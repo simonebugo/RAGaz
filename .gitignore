@@ -1,0 +1,17 @@
+# virtual environment
+.venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# extracted data 
+/data/extracted/
+
+# environment variables
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
