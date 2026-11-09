@@ -1,7 +1,7 @@
 from pathlib import Path
-from load_documents import load_documents
+from ragaz.load_documents import load_documents
 if __name__ == "__main__":
-    project_dir = Path(__file__).resolve().parent
+    project_dir = Path(__file__).resolve().parent.parent
     documents = load_documents(project_dir / "data" / "raw")
     output_dir = project_dir / "data" / "extracted"
     output_dir.mkdir(parents=True, exist_ok=True)

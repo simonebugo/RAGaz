@@ -30,7 +30,7 @@ def load_documents(pdf_dir: Path) -> list[Document]:
 
 
 if __name__ == "__main__":
-    project_dir = Path(__file__).resolve().parent
+    project_dir = Path(__file__).resolve().parent.parent
     pdf_dir = project_dir / "data" / "raw"
 
     documents = load_documents(pdf_dir)

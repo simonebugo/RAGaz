@@ -1,9 +1,6 @@
+
 from transformers import AutoTokenizer
-
-
-def count_tokens(text,tokenizer) -> int:
-    token_ids = tokenizer.encode(text, add_special_tokens=True)
-    return len(token_ids)
+from ragaz.tokenization import count_tokens
 
 if __name__ == "__main__":
     model_name = "intfloat/multilingual-e5-small"

@@ -1,11 +1,11 @@
 from transformers import AutoTokenizer
 from pathlib import Path
-from load_documents import load_documents
-from inspect_tokens import count_tokens
-from chunk_documents import chunk_documents
+from ragaz.load_documents import load_documents
+from ragaz.tokenization import count_tokens
+from ragaz.chunk_documents import chunk_documents
 
 if __name__ == "__main__":
-    project_dir = Path(__file__).resolve().parent
+    project_dir = Path(__file__).resolve().parent.parent
     pdf_dir = project_dir / "data" / "raw"
     documents = load_documents(pdf_dir)
     model_name = "intfloat/multilingual-e5-small"
