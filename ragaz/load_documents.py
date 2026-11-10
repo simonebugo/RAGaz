@@ -1,19 +1,28 @@
+"""Stage 1: extract PDF text while preserving its source and page number."""
+
 from pathlib import Path
-from pypdf import PdfReader
+
 from langchain_core.documents import Document
+from pypdf import PdfReader
 
 
 def load_documents(pdf_dir: Path) -> list[Document]:
+    """Return one Document per page, in a predictable file/page order.
+
+    A LangChain Document is text plus metadata, not necessarily an entire file.
+    This loader extracts existing text; scanned pages need a separate OCR step.
+    """
     pdf_paths = sorted(pdf_dir.glob("*.pdf"))
 
     if not pdf_paths:
-        raise FileNotFoundError(f"Nessun PDF trovato in: {pdf_dir}")
+        raise FileNotFoundError(f"No PDF files found in: {pdf_dir}")
 
-    documents = []
+    documents: list[Document] = []
 
     for pdf_path in pdf_paths:
         reader = PdfReader(pdf_path)
 
+        # Human-readable page numbers let us trace retrieved chunks to the PDF.
         for page_number, page in enumerate(reader.pages, start=1):
             document = Document(
                 page_content=page.extract_text() or "",
@@ -24,26 +33,5 @@ def load_documents(pdf_dir: Path) -> list[Document]:
             )
             documents.append(document)
 
-        print(f"{pdf_path.name}: {len(reader.pages)} pagine")
-
+    # Return data; the caller decides whether to display it in a terminal or UI.
     return documents
-
-
-if __name__ == "__main__":
-    project_dir = Path(__file__).resolve().parent.parent
-    pdf_dir = project_dir / "data" / "raw"
-
-    documents = load_documents(pdf_dir)
-
-    empty_pages = []
-
-    for doc in documents:
-        text = doc.page_content.strip()
-        if not text:
-            empty_pages.append(doc.metadata)
-
-    print("\nTotale pagine caricate:", len(documents))
-    print("Pagine senza testo:", len(empty_pages))
-
-    if empty_pages:
-        print("Pagine da controllare:", empty_pages)

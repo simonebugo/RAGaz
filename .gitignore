@@ -1,17 +1,20 @@
-# virtual environment
+# Virtual environment
 .venv/
 
-# Cache Python
+# Python bytecode cache
 __pycache__/
 *.py[cod]
 
-# extracted data 
+# Generated text exports
 /data/extracted/
 
-# environment variables
+# Private environment settings
 .env
 .env.*
 !.env.example
 
 # macOS
 .DS_Store
+
+# Generated Chroma database
+/data/chroma/
