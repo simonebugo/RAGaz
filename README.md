@@ -1,4 +1,4 @@
-# RAGaz: an educational RAG pipeline
+# RAGaz: RAG pipeline
 
 RAGaz is a modular Retrieval-Augmented Generation (RAG) system for querying PDF collections through natural-language questions and generating answers with references to the retrieved sources.
 
