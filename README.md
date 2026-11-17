@@ -4,8 +4,7 @@ A small Python project that follows a document from PDF extraction to a
 source-grounded answer. It uses LangChain, multilingual E5 embeddings, Chroma,
 and Qwen served locally by LM Studio. An optional OpenAI generator is also kept.
 
-The local path has been exercised end to end. Cloud generation requires API
-credit and has not yet completed a successful request in this project.
+The local path has been exercised end to end.
 
 ## 1. Understand the two workflows
 
