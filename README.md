@@ -1,10 +1,6 @@
 # RAGaz: an educational RAG pipeline
 
-A Python project that follows a document from PDF extraction to a
-source-grounded answer. It uses LangChain, multilingual E5 embeddings, Chroma,
-and Qwen served locally by LM Studio. An optional OpenAI generator is also kept.
-
-The local path has been exercised end to end.
+RAGaz is a modular Retrieval-Augmented Generation (RAG) system for querying PDF collections through natural-language questions and generating answers with references to the retrieved sources.
 
 ## 1. Understand the two workflows
 
