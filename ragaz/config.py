@@ -6,6 +6,7 @@ from pathlib import Path
 # Both entry points must open the same database and collection.
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 PDF_DIR = PROJECT_DIR / "data" / "raw"
+UPLOAD_DIR = PROJECT_DIR / "data" / "uploads"
 CHROMA_DIR = PROJECT_DIR / "data" / "chroma"
 COLLECTION_NAME = "ragaz_e5_small_v1"
 

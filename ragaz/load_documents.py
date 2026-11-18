@@ -5,6 +5,21 @@ from pathlib import Path
 from langchain_core.documents import Document
 from pypdf import PdfReader
 
+def load_pdf(pdf_path: Path) -> list[Document]:
+    """Extract one Document per page from a PDF."""
+    reader = PdfReader(pdf_path)
+    documents: list[Document] = []
+
+    for page_number, page in enumerate(reader.pages, start=1):
+        document = Document(
+            page_content=page.extract_text() or "",
+            metadata={"source": pdf_path.name, "page": page_number},
+        )
+        documents.append(document)
+
+    return documents
+
+
 
 def load_documents(pdf_dir: Path) -> list[Document]:
     """Return one Document per page, in a predictable file/page order.
@@ -20,18 +35,7 @@ def load_documents(pdf_dir: Path) -> list[Document]:
     documents: list[Document] = []
 
     for pdf_path in pdf_paths:
-        reader = PdfReader(pdf_path)
-
-        # Human-readable page numbers let us trace retrieved chunks to the PDF.
-        for page_number, page in enumerate(reader.pages, start=1):
-            document = Document(
-                page_content=page.extract_text() or "",
-                metadata={
-                    "source": pdf_path.name,
-                    "page": page_number,
-                },
-            )
-            documents.append(document)
+        documents.extend(load_pdf(pdf_path))
 
     # Return data; the caller decides whether to display it in a terminal or UI.
     return documents

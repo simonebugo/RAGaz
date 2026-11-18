@@ -16,5 +16,5 @@ __pycache__/
 # macOS
 .DS_Store
 
-# Generated Chroma database
-/data/chroma/
+#database
+/data/*

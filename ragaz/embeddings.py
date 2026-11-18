@@ -15,9 +15,7 @@ class E5Embeddings(Embeddings):
     embedding model locally, independently of the generator in LM Studio.
     """
 
-    def __init__(
-        self, model_name: str = EMBEDDING_MODEL_NAME, device: str | None = None
-    ) -> None:
+    def __init__(self, model_name: str = EMBEDDING_MODEL_NAME, device: str | None = None) -> None:
         """Load one encoder/tokenizer pair on the explicit or selected device."""
         # Prefer an explicit device, then the environment. With neither set,
         # Sentence Transformers selects an available device, including CPU.

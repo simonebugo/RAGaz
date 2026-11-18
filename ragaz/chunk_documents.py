@@ -8,12 +8,7 @@ from ragaz.config import CHUNK_OVERLAP, CHUNK_SIZE, E5_MAX_TOKENS
 from ragaz.tokenization import count_tokens
 
 
-def chunk_documents(
-    documents: list[Document],
-    tokenizer: PreTrainedTokenizerBase,
-    chunk_size: int = CHUNK_SIZE,
-    chunk_overlap: int = CHUNK_OVERLAP,
-) -> list[Document]:
+def chunk_documents(documents: list[Document],tokenizer: PreTrainedTokenizerBase,chunk_size: int = CHUNK_SIZE, chunk_overlap: int = CHUNK_OVERLAP) -> list[Document]:
     """Split within each page and retain its source/page metadata.
 
     The recursive splitter prefers paragraph and line boundaries before using
@@ -21,11 +16,7 @@ def chunk_documents(
     Length is measured in tokens. Overlap is a target, not a promise that every
     pair of chunks will share exactly that many tokens.
     """
-    splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
-        tokenizer=tokenizer,
-        chunk_size=chunk_size,
-        chunk_overlap=chunk_overlap,
-    )
+    splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(tokenizer=tokenizer, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     chunks = splitter.split_documents(documents)
 
     # The splitter measures text alone; E5 also receives a prefix and special

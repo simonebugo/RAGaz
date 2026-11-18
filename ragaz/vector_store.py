@@ -8,13 +8,7 @@ from langchain_core.embeddings import Embeddings
 from ragaz.config import CHROMA_DIR, COLLECTION_NAME
 
 
-def open_vector_store(
-    embedding_model: Embeddings,
-    db_dir: Path = CHROMA_DIR,
-    collection_name: str = COLLECTION_NAME,
-    *,
-    create_if_missing: bool = False,
-) -> Chroma:
+def open_vector_store(embedding_model: Embeddings, db_dir: Path = CHROMA_DIR, collection_name: str = COLLECTION_NAME, *, create_if_missing: bool = False) -> Chroma:
     """Open a persisted collection; allow creation only during indexing.
 
     A collection stores chunk IDs, text, metadata, and embeddings. Supply the

@@ -7,9 +7,7 @@ from ragaz.context import format_documents
 from ragaz.prompts import build_rag_prompt
 
 
-def answer_question(
-    query: str, retriever: BaseRetriever, llm: BaseChatModel
-) -> dict:
+def answer_question(query: str, retriever: BaseRetriever, llm: BaseChatModel) -> dict:
     """Answer one independent question and return its source Documents.
 
     The caller creates and reuses the retriever and model clients. This function
